@@ -97,15 +97,7 @@ public class SignContractActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onDrawCreated(Bitmap draw) { //*
 
-        //mSideView.setVisibility(View.GONE);
-        //mFreeDrawView.setVisibility(View.GONE);
-
-        //mMenu.findItem(R.id.menu_form).setVisible(false);
-
-        //mImgScreen.setVisibility(View.VISIBLE);
-
         mImgScreen.setImageBitmap(draw);
-
         new Save(getApplicationContext(), draw);
 
     }
