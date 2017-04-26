@@ -90,9 +90,15 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+            AddFormProyectFragment fragment = new AddFormProyectFragment();
+            fragmentTransaction.replace(R.id.content_main, fragment);
+            fragmentTransaction.commit();
 
         } else if (id == R.id.nav_manage) {
-
+            Intent i = new Intent(this, SignContractActivity.class );
+            startActivity(i);
         } else if (id == R.id.nav_share) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
@@ -101,9 +107,7 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
 
         } else if (id == R.id.nav_send) {
-            Intent i = new Intent(this, SignContractActivity.class );
-            startActivity(i);
-
+                finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
