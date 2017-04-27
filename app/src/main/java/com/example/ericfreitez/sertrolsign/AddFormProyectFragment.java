@@ -1,29 +1,38 @@
 package com.example.ericfreitez.sertrolsign;
 
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class AddFormProyectFragment extends Fragment {
+public class AddFormProyectFragment extends Fragment implements  View.OnTouchListener{
 
-    TextView fechaForm;
-    EditText horaEntrada;
-    EditText horaSalida;
+    private TextView fechaForm;
+    private EditText horaEntrada;
+    private EditText horaSalida;
+    /*private DatePickerDialog fromDatePickerDialog;
+    private DatePickerDialog toDatePickerDialog;
+    private SimpleDateFormat dateFormatter;*/
 
     public static AddFormProyectFragment newInstance() {
         AddFormProyectFragment fragment = new AddFormProyectFragment();
@@ -47,14 +56,39 @@ public class AddFormProyectFragment extends Fragment {
 
         fechaForm= (TextView) v.findViewById(R.id.fecha_form);
         horaEntrada= (EditText) v.findViewById(R.id.hora_entrada);
-        horaSalida= (EditText) v.findViewById(R.id.hora_Salida);
+        horaSalida= (EditText) v.findViewById(R.id.hora_salida);
+
         horaEntrada.setKeyListener(null);
         horaSalida.setKeyListener(null);
-        horaEntrada.setText(getCurrentDate("hora"));
+        horaEntrada.setText(getCurrentDate("horaAmPm"));
         fechaForm.setText(getCurrentDate("fecha"));
 
+        horaEntrada.setOnTouchListener(this);
+        horaSalida.setOnTouchListener(this);
+
+        setDateTimeField();
 
         return v;
+
+
+    }
+
+    private void setDateTimeField() {
+        /*
+
+        Calendar mcurrentTime = Calendar.getInstance();
+        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+        int minute = mcurrentTime.get(Calendar.MINUTE);
+        TimePickerDialog mTimePicker;
+        mTimePicker = new TimePickerDialog(AddReminder.this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                eReminderTime.setText( selectedHour + ":" + selectedMinute);
+            }
+        }, hour, minute, true);//Yes 24 hour time
+        mTimePicker.setTitle("Select Time");
+        mTimePicker.show();*/
+
     }
 
 
@@ -63,17 +97,17 @@ public class AddFormProyectFragment extends Fragment {
 
         if(formato=="fecha"){
 
-        String year = String.valueOf(fecha.get(Calendar.YEAR));
-        String month = String.valueOf(fecha.get(Calendar.MONTH));
-        String day = String.valueOf(fecha.get(Calendar.DAY_OF_MONTH));
-        if (month.length()==1) {
-            month = "0" + month;
-        }
-        if (day.length()==1) {
-            day = "0" + day;
-        }
-            String returnfecha=day + "/" + month +"/" + "" +year;
-            return returnfecha;
+            String year = String.valueOf(fecha.get(Calendar.YEAR));
+            String month = String.valueOf(fecha.get(Calendar.MONTH));
+            String day = String.valueOf(fecha.get(Calendar.DAY_OF_MONTH));
+            if (month.length()==1) {
+                month = "0" + month;
+            }
+            if (day.length()==1) {
+                day = "0" + day;
+            }
+                String returnfecha=day + "/" + month +"/" + "" +year;
+                return returnfecha;
         }else {
             String hora = String.valueOf(fecha.get(Calendar.HOUR));
             String minute = String.valueOf(fecha.get(Calendar.MINUTE));
@@ -82,9 +116,12 @@ public class AddFormProyectFragment extends Fragment {
 
         }
 
-
-
-
     }
 
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        Log.i("msg","onTouch");
+        //fromDatePickerDialog.show();
+        return false;
+    }
 }

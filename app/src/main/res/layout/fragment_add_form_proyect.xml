@@ -113,7 +113,7 @@
                 android:layout_gravity="center"/>
 
             <EditText
-                android:id="@+id/hora_Salida"
+                android:id="@+id/hora_salida"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Salida"/>
