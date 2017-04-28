@@ -66,7 +66,6 @@ public class AddFormProyectFragment extends Fragment implements  View.OnTouchLis
         horaEntrada.setOnTouchListener(this);
         horaSalida.setOnTouchListener(this);
 
-        setDateTimeField();
 
         return v;
 
@@ -74,28 +73,57 @@ public class AddFormProyectFragment extends Fragment implements  View.OnTouchLis
     }
 
     private void setDateTimeField() {
-        /*
 
         Calendar mcurrentTime = Calendar.getInstance();
         int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
         int minute = mcurrentTime.get(Calendar.MINUTE);
         TimePickerDialog mTimePicker;
-        mTimePicker = new TimePickerDialog(AddReminder.this, new TimePickerDialog.OnTimeSetListener() {
+        mTimePicker = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                eReminderTime.setText( selectedHour + ":" + selectedMinute);
+
+                Log.i("msg",String.valueOf((String.valueOf(selectedHour)).length()));
+                Log.i("msg",String.valueOf((String.valueOf(selectedMinute)).length()));
+
+                int timehora=(String.valueOf(selectedHour)).length();
+                int timeMinute=(String.valueOf(selectedMinute)).length();
+
+                horaSalida.setText(timeTransform(timehora, timeMinute , selectedHour, selectedMinute));
+
             }
-        }, hour, minute, true);//Yes 24 hour time
-        mTimePicker.setTitle("Select Time");
-        mTimePicker.show();*/
+        }, hour, minute, false);//Yes 24 hour time
+        mTimePicker.setTitle("Seleccione la hora");
+        mTimePicker.show();
 
     }
 
+    private String timeTransform(int timeHourLength, int timeMinuteLength ,int selectedHour, int selectedMinute){ // valida la hora en hora militar y llena de cero los espacios faltanes
+        String timeReturn;
+
+        if(timeMinuteLength==1|| timeMinuteLength==0 || timeHourLength==1 || timeHourLength==0 ) {
+
+            String timeHoraReturn=String.valueOf(selectedHour);
+            String timeMinuteReturn=String.valueOf(selectedMinute);
+
+            if (timeMinuteLength == 1 || timeMinuteLength == 0) {
+                timeMinuteReturn = ("0" + +selectedMinute);
+
+            }
+            if (timeHourLength == 1 || timeHourLength == 0) {
+                timeHoraReturn = ("0" + selectedHour);
+            }
+            timeReturn = timeHoraReturn + ":" +timeMinuteReturn;
+
+        }else
+            timeReturn =( selectedHour + ":" + selectedMinute);
+
+        return timeReturn;
+    }
 
     private String getCurrentDate(String formato) {
         Calendar fecha = new GregorianCalendar();
 
-        if(formato=="fecha"){
+        if(formato.equals("fecha")){
 
             String year = String.valueOf(fecha.get(Calendar.YEAR));
             String month = String.valueOf(fecha.get(Calendar.MONTH));
@@ -121,7 +149,12 @@ public class AddFormProyectFragment extends Fragment implements  View.OnTouchLis
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         Log.i("msg","onTouch");
-        //fromDatePickerDialog.show();
+
+        if(event.getAction() == MotionEvent.ACTION_UP) {
+            setDateTimeField();
+        }
+
         return false;
     }
+
 }
