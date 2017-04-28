@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -30,6 +31,8 @@ public class AddFormProyectFragment extends Fragment implements  View.OnTouchLis
     private TextView fechaForm;
     private EditText horaEntrada;
     private EditText horaSalida;
+    private CheckBox checkBoxPrueba;
+    private TextView textViewPrueba;
     /*private DatePickerDialog fromDatePickerDialog;
     private DatePickerDialog toDatePickerDialog;
     private SimpleDateFormat dateFormatter;*/
@@ -57,6 +60,10 @@ public class AddFormProyectFragment extends Fragment implements  View.OnTouchLis
         fechaForm= (TextView) v.findViewById(R.id.fecha_form);
         horaEntrada= (EditText) v.findViewById(R.id.hora_entrada);
         horaSalida= (EditText) v.findViewById(R.id.hora_salida);
+        checkBoxPrueba= (CheckBox) v.findViewById(R.id.check_box_prueba);
+        textViewPrueba= (TextView) v.findViewById(R.id.text_view_prueba);
+        textViewPrueba.setVisibility(View.GONE);
+
 
         horaEntrada.setKeyListener(null);
         horaSalida.setKeyListener(null);
@@ -66,13 +73,14 @@ public class AddFormProyectFragment extends Fragment implements  View.OnTouchLis
         horaEntrada.setOnTouchListener(this);
         horaSalida.setOnTouchListener(this);
 
+        checkBoxPrueba.setOnTouchListener(this);
+
 
         return v;
 
-
     }
 
-    private void setDateTimeField() {
+    private void setDateTimeField(final View v) {
 
         Calendar mcurrentTime = Calendar.getInstance();
         int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
@@ -81,15 +89,17 @@ public class AddFormProyectFragment extends Fragment implements  View.OnTouchLis
         mTimePicker = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-
-                Log.i("msg",String.valueOf((String.valueOf(selectedHour)).length()));
-                Log.i("msg",String.valueOf((String.valueOf(selectedMinute)).length()));
+                //Log.i("msg",String.valueOf((String.valueOf(selectedHour)).length()));
+                //Log.i("msg",String.valueOf((String.valueOf(selectedMinute)).length()));
 
                 int timehora=(String.valueOf(selectedHour)).length();
                 int timeMinute=(String.valueOf(selectedMinute)).length();
 
-                horaSalida.setText(timeTransform(timehora, timeMinute , selectedHour, selectedMinute));
 
+                if (v.getId() == R.id.hora_entrada)
+                    horaEntrada.setText(timeTransform(timehora, timeMinute , selectedHour, selectedMinute));
+                else
+                    horaSalida.setText(timeTransform(timehora, timeMinute , selectedHour, selectedMinute));
             }
         }, hour, minute, false);//Yes 24 hour time
         mTimePicker.setTitle("Seleccione la hora");
@@ -148,11 +158,21 @@ public class AddFormProyectFragment extends Fragment implements  View.OnTouchLis
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        Log.i("msg","onTouch");
 
-        if(event.getAction() == MotionEvent.ACTION_UP) {
-            setDateTimeField();
+        if(v.getId() == R.id.hora_entrada ||v.getId() == R.id.hora_salida) {
+            if (event.getAction() == MotionEvent.ACTION_UP) {
+                setDateTimeField(v);
+            }
+        }else if(v.getId()==R.id.check_box_prueba){
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                Log.i("msg","checkbox Escuchando");
+                if(checkBoxPrueba.isChecked())
+                    textViewPrueba.setVisibility(View.VISIBLE);
+                else
+                    textViewPrueba.setVisibility(View.GONE);
+            }
         }
+
 
         return false;
     }

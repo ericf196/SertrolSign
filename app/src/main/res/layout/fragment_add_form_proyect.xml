@@ -16,7 +16,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/account"
+            android:src="@drawable/calendar"
             android:layout_gravity="center"/>
 
         <TextView
@@ -120,6 +120,20 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/check_box_prueba"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CheckBox" />
+
+    <TextView
+        android:id="@+id/text_view_prueba"
+        android:text="Hola"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>
