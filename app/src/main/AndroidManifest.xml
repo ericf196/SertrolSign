@@ -27,8 +27,9 @@
         </activity>
         <activity
             android:name=".SignContractActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".LoginActivity">
+            android:screenOrientation="portrait" />
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".FirmaReporteActivity">
 
 
 

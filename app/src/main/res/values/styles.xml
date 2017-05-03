@@ -19,6 +19,21 @@
 
 
 
+    <style name="CheckBoxLeft">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+
+    <style name="CheckBoxRight">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_gravity">right</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
 
     <!-- Base application theme.
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">

@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.ericfreitez.sertrolsign.fragments.ProyectosPendientesFragment;
+import com.example.ericfreitez.sertrolsign.fragments.ReporteServicioFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -27,15 +28,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -89,12 +81,16 @@ public class MainActivity extends AppCompatActivity
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
+            Intent i = new Intent(this, FirmaReporteActivity.class );
+            startActivity(i);
+
+        } else if (id == R.id.nav_reporte_servicio) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-            AddFormProyectFragment fragment = new AddFormProyectFragment();
+            ReporteServicioFragment fragment = new ReporteServicioFragment();
             fragmentTransaction.replace(R.id.content_main, fragment);
             fragmentTransaction.commit();
+            getSupportActionBar().setTitle("Reporte Servicio");
 
         } else if (id == R.id.nav_manage) {
             Intent i = new Intent(this, SignContractActivity.class );

@@ -15,7 +15,6 @@ import com.example.ericfreitez.sertrolsign.recyclerview.ProyectosAdapterPendient
 
 import java.util.ArrayList;
 
-
 public class ProyectosPendientesFragment extends Fragment {
     private RecyclerView recycler;
     private RecyclerView.Adapter adapter;
@@ -49,11 +48,12 @@ public class ProyectosPendientesFragment extends Fragment {
         recycler.setHasFixedSize(true);
 
 
-// Usar un administrador para LinearLayout
+        // Usar un administrador para LinearLayout
         lManager = new LinearLayoutManager(getActivity());
+
         recycler.setLayoutManager(lManager);
 
-// Crear un nuevo adaptador
+        // Crear un nuevo adaptador
         adapter = new ProyectosAdapterPendientes(itemsProyectos);
         recycler.setAdapter(adapter);
 

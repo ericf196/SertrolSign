@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!-- A CardView that contains a TextView -->
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardUseCompatPadding="false"
+        card_view:cardElevation="10dp"
+        card_view:cardMaxElevation="10dp"
+        android:layout_marginBottom="0.5dp"
+        card_view:cardCornerRadius="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/reporte_responsable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="Nombre Responsable"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/reporte_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="17/06/17"
+                android:layout_gravity="right"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/reporte_descripcion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="@string/lorem_ipsum_1"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/black"/>
+
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>
