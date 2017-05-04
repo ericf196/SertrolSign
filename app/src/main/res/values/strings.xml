@@ -6,8 +6,10 @@
 
     <string name="action_settings">Settings</string>
     <string name="show_screenshot">Take Screenshot</string>
-    <string name="name_organitaion">Nombre de la organizacion</string>
-    <string name="email_organitation">Email Organizacion</string>
+    <string name="name_organitaion">Nombre de la Empresa</string>
+    <string name="email_organitation">Email Empresa</string>
+    <string name="phone_empresa">Telefono Empresa</string>
+    <string name="address_empresa">Direccion Empresa</string>
     <string name="responsable_empresa">Responsable Empresa</string>
     <string name="descripcion_servicio">Descripcion del servicio</string>
     <string name="login_user">User</string>

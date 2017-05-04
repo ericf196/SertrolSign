@@ -22,7 +22,6 @@ public class FirmaReporteActivity extends AppCompatActivity {
     private RecyclerView recycler;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager lManager;
-    private TextView editNameOrganization;
 
 
     @Override

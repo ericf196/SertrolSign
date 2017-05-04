@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.ericfreitez.sertrolsign.fragments.ListarEmpresasFragment;
 import com.example.ericfreitez.sertrolsign.fragments.ProyectosPendientesFragment;
 import com.example.ericfreitez.sertrolsign.fragments.ReporteServicioFragment;
 
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.getMenu().getItem(0).setChecked(true);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -77,32 +79,34 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.servicios) {
 
-            Intent i = new Intent(this, FirmaReporteActivity.class );
-            startActivity(i);
-
-        } else if (id == R.id.nav_reporte_servicio) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-            ReporteServicioFragment fragment = new ReporteServicioFragment();
-            fragmentTransaction.replace(R.id.content_main, fragment);
-            fragmentTransaction.commit();
-            getSupportActionBar().setTitle("Reporte Servicio");
-
-        } else if (id == R.id.nav_manage) {
-            Intent i = new Intent(this, SignContractActivity.class );
-            startActivity(i);
-        } else if (id == R.id.nav_share) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
             ProyectosPendientesFragment fragment = new ProyectosPendientesFragment();
             fragmentTransaction.replace(R.id.content_main, fragment);
             fragmentTransaction.commit();
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.agregar_empresa) {
+
+            Intent i = new Intent(this, AgregarEmpresaActivity.class );
+            startActivity(i);
+
+        } else if (id == R.id.listar_empresas) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+            ListarEmpresasFragment fragment = new ListarEmpresasFragment();
+            fragmentTransaction.replace(R.id.content_main, fragment);
+            fragmentTransaction.commit();
+            getSupportActionBar().setTitle("Listas Empresas");
+
+        } else if (id == R.id.crear_proyecto) {
+            /*Intent i = new Intent(this, SignContractActivity.class );
+            startActivity(i);*/
+        } else if (id == R.id.nav_share) {
+
+
+        } else if (id == R.id.cerrar) {
                 finish();
         }
 

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.ericfreitez.sertrolsign.FirmaReporteActivity;
 import com.example.ericfreitez.sertrolsign.MainActivity;
 import com.example.ericfreitez.sertrolsign.R;
+import com.example.ericfreitez.sertrolsign.ReporteServicioActivity;
 import com.example.ericfreitez.sertrolsign.models.Proyecto;
 
 import java.util.List;
@@ -40,10 +41,8 @@ public class ProyectosAdapterPendientes extends RecyclerView.Adapter<ProyectosAd
         public Button opcionCerrarServicio;
 
 
-
         public ProyectosViewHolder(View v) {
             super(v);
-
 
             nombreEmpresa = (TextView) v.findViewById( R.id.nombre_empresa);
             nombreProyecto = (TextView) v.findViewById(R.id.nombre_proyecto);
@@ -82,7 +81,6 @@ public class ProyectosAdapterPendientes extends RecyclerView.Adapter<ProyectosAd
         metodoOpcionAgregarServicio(holder, position);
         metodoOpcionCerrarServicio(holder, position);
 
-
     }
 
     private void metodoOpcionAgregarServicio(ProyectosViewHolder holder,final int position) {
@@ -91,7 +89,8 @@ public class ProyectosAdapterPendientes extends RecyclerView.Adapter<ProyectosAd
             public void onClick(View view) {
                 //Log.i("msg","Ëscuchando"+ position);
                 Log.i("msg","opcionAgregarServicio " + position);
-
+                Intent i = new Intent(context, ReporteServicioActivity.class);
+                context.startActivity(i);
 
             }
         });
@@ -113,7 +112,6 @@ public class ProyectosAdapterPendientes extends RecyclerView.Adapter<ProyectosAd
 
 
     }
-
 
     public int getItemCount() {
         return itemsProyectos.size();

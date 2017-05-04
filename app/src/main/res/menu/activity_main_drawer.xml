@@ -3,31 +3,32 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Agregar Empresa" />
+            android:id="@+id/servicios"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Servicios" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/agregar_empresa"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Agregar Empresa"
+             />
         <item
-            android:id="@+id/nav_reporte_servicio"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Reporte de Servicio" />
+            android:id="@+id/listar_empresas"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Listar Empresas" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/crear_proyecto"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Crear Proyecto" />
     </group>
 
     <item android:title="Communicate">
         <menu>
             <item
                 android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/ic_menu_send"
                 android:title="Share" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/cerrar"
                 android:icon="@drawable/ic_menu_send"
                 android:title="Cerrar Cesion" />
         </menu>
