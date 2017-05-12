@@ -39,6 +39,14 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.getMenu().getItem(0).setChecked(true);
         navigationView.setNavigationItemSelectedListener(this);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        ProyectosPendientesFragment fragment = new ProyectosPendientesFragment();
+        fragmentTransaction.replace(R.id.content_main, fragment);
+        fragmentTransaction.commit();
+
+
     }
 
     @Override
@@ -51,12 +59,12 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
-    }
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -89,8 +97,12 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.agregar_empresa) {
 
-            Intent i = new Intent(this, AgregarEmpresaActivity.class );
-            startActivity(i);
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+            AgregarEmpresaFragment fragment = new AgregarEmpresaFragment();
+            fragmentTransaction.replace(R.id.content_main, fragment);
+            fragmentTransaction.commit();
+            getSupportActionBar().setTitle("Agregar Empresa");
 
         } else if (id == R.id.listar_empresas) {
             FragmentManager fragmentManager = getSupportFragmentManager();
@@ -101,10 +113,13 @@ public class MainActivity extends AppCompatActivity
             getSupportActionBar().setTitle("Listas Empresas");
 
         } else if (id == R.id.crear_proyecto) {
-            /*Intent i = new Intent(this, SignContractActivity.class );
-            startActivity(i);*/
-        } else if (id == R.id.nav_share) {
 
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+            CrearProyectoFragment fragment = new CrearProyectoFragment();
+            fragmentTransaction.replace(R.id.content_main, fragment);
+            fragmentTransaction.commit();
+            getSupportActionBar().setTitle("Crear Proyecto");
 
         } else if (id == R.id.cerrar) {
                 finish();

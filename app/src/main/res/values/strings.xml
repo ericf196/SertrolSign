@@ -9,6 +9,8 @@
     <string name="name_organitaion">Nombre de la Empresa</string>
     <string name="email_organitation">Email Empresa</string>
     <string name="phone_empresa">Telefono Empresa</string>
+    <string name="descripcion_proyecto">Descripcion del proyecto</string>
+    <string name="name_proyecto">Nombre del proyecto</string>
     <string name="address_empresa">Direccion Empresa</string>
     <string name="responsable_empresa">Responsable Empresa</string>
     <string name="descripcion_servicio">Descripcion del servicio</string>

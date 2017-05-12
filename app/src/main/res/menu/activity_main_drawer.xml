@@ -21,12 +21,8 @@
             android:title="Crear Proyecto" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Opciones">
         <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Share" />
             <item
                 android:id="@+id/cerrar"
                 android:icon="@drawable/ic_menu_send"
