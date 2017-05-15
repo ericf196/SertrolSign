@@ -85,11 +85,11 @@ public class ServicioPruebaActivity extends AppCompatActivity implements View.On
                 mTextDireccion.getText().toString()
         );
 
-        enviarInsert(empresa);
+        //enviarInsert(empresa);
 
     }
 
-    private void enviarInsert(Empresa empresa) {
+    /*private void enviarInsert(Empresa empresa) {
         EmpresaClient service = ApiClient.getClient().create(EmpresaClient.class);
 
         Call<Empresa> call= service.createEmpresa(empresa);
@@ -108,5 +108,5 @@ public class ServicioPruebaActivity extends AppCompatActivity implements View.On
 
 
 
-    }
+    }*/
 }

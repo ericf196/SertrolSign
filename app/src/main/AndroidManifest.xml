@@ -21,6 +21,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
         <activity
             android:name=".SignContractActivity"
@@ -30,11 +36,8 @@
         <activity android:name=".ReporteServicioActivity" />
         <activity android:name=".AgregarEmpresaActivity"></activity>
         <activity android:name=".ServicioPruebaActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
 
         </activity>
     </application>
