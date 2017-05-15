@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
 public class Proyecto {
 
-    private String codigoProyecto;
-    private String nombreProyecto;
-    private String descripcionProyecto;
-    private String nombreEmpresa;
+    public String  CodigoProyecto;
+    public String  NombreProyecto;
+    public String  DescripcionProyecto;
+    public String  NombreEmpresa;
 
 }

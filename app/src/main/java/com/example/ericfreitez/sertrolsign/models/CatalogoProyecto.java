@@ -1,5 +1,6 @@
 package com.example.ericfreitez.sertrolsign.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**

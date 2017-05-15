@@ -52,7 +52,7 @@ public class CrearProyectoFragment extends Fragment {
         editDescripcionProyecto = (EditText) v.findViewById(R.id.edit_descripcion_proyecto);
 
 
-        Empresa empresa = new Empresa();
+        /*Empresa empresa = new Empresa();
         ArrayList<Empresa> itemEmpresa = empresa.cargarData();
         ArrayList<String> itemSpinner= new ArrayList<>();
 
@@ -63,7 +63,7 @@ public class CrearProyectoFragment extends Fragment {
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, itemSpinner);
 
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(spinnerAdapter);
+        spinner.setAdapter(spinnerAdapter);*/
 
         return v;
     }

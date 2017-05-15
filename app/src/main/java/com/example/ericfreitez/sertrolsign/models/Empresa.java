@@ -8,45 +8,14 @@ import java.util.ArrayList;
 
 public class Empresa {
 
+    private String idEmpresa;
     private String nombreEmpresa;
+    private String telefonoEmpresa;
     private String direccionEmpresa;
 
-    public Empresa() {
-    }
-
-    public Empresa(String nombreEmpresa, String direccionEmpresa) {
+    public Empresa(String nombreEmpresa, String telefonoEmpresa, String direccionEmpresa) {
         this.nombreEmpresa = nombreEmpresa;
+        this.telefonoEmpresa = telefonoEmpresa;
         this.direccionEmpresa = direccionEmpresa;
-    }
-
-
-    public String getNombreEmpresa() {
-        return nombreEmpresa;
-    }
-
-    public void setNombreEmpresa(String nombreEmpresa) {
-        this.nombreEmpresa = nombreEmpresa;
-    }
-
-    public String getDireccionEmpresa() {
-        return direccionEmpresa;
-    }
-
-    public void setDireccionEmpresa(String direccionEmpresa) {
-        this.direccionEmpresa = direccionEmpresa;
-    }
-
-
-    public ArrayList<Empresa> cargarData(){
-        ArrayList<Empresa> itemsEmpresa = new ArrayList<>();
-
-        itemsEmpresa.add(new Empresa("Tubrica","tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, laboris nisi"));
-        itemsEmpresa.add(new Empresa("Nestle","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod"));
-        itemsEmpresa.add(new Empresa("OtraVez C.A","ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehende"));
-        itemsEmpresa.add(new Empresa("Preca C.A","ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehende"));
-        itemsEmpresa.add(new Empresa("EPA C.A","ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehende"));
-
-        return itemsEmpresa;
-
     }
 }

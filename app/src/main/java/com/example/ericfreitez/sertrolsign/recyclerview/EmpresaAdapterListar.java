@@ -53,8 +53,8 @@ public class EmpresaAdapterListar extends RecyclerView.Adapter<EmpresaAdapterLis
 
     public void onBindViewHolder(EmpresaAdapterListar.EmpresaViewHolder holder, int position) {
 
-        holder.nombreEmpresa.setText(String.valueOf(itemsEmpresa.get(position).getNombreEmpresa()));
-        holder.direccionEmpresa.setText(String.valueOf(itemsEmpresa.get(position).getDireccionEmpresa()));
+        //holder.nombreEmpresa.setText(String.valueOf(itemsEmpresa.get(position).getNombreEmpresa()));
+        //holder.direccionEmpresa.setText(String.valueOf(itemsEmpresa.get(position).getDireccionEmpresa()));
 
     }
 
