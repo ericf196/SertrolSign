@@ -63,7 +63,7 @@ public class ProyectosAdapterPendientes extends RecyclerView.Adapter<ProyectosAd
     public ProyectosViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.row_list_proyectos, parent, false);
-        Log.i("msg", String.valueOf(v.getContext()));
+        //Log.i("msg", String.valueOf(v.getContext()));
         context=v.getContext();
 
         return new ProyectosViewHolder(v);
@@ -88,7 +88,7 @@ public class ProyectosAdapterPendientes extends RecyclerView.Adapter<ProyectosAd
             @Override
             public void onClick(View view) {
                 //Log.i("msg","Ëscuchando"+ position);
-                Log.i("msg","opcionAgregarServicio " + position);
+                //Log.i("msg","opcionAgregarServicio " + position);
                 Intent i = new Intent(context, ReporteServicioActivity.class);
                 context.startActivity(i);
 

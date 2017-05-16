@@ -1,5 +1,7 @@
 package com.example.ericfreitez.sertrolsign.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 /**
@@ -8,17 +10,21 @@ import java.util.ArrayList;
 
 public class Empresa {
 
+    @SerializedName("idEmpresa")
+    private String idEmpresa;
+
+    @SerializedName("NombreEmpresa")
     private String nombreEmpresa;
+    @SerializedName("TelefonoEmpresa")
+    private String telefonoEmpresa;
+    @SerializedName("DireccionEmpresa")
     private String direccionEmpresa;
 
-    public Empresa() {
-    }
-
-    public Empresa(String nombreEmpresa, String direccionEmpresa) {
+    public Empresa(String nombreEmpresa, String telefonoEmpresa, String direccionEmpresa) {
         this.nombreEmpresa = nombreEmpresa;
+        this.telefonoEmpresa = telefonoEmpresa;
         this.direccionEmpresa = direccionEmpresa;
     }
-
 
     public String getNombreEmpresa() {
         return nombreEmpresa;
@@ -28,25 +34,19 @@ public class Empresa {
         this.nombreEmpresa = nombreEmpresa;
     }
 
+    public String getTelefonoEmpresa() {
+        return telefonoEmpresa;
+    }
+
+    public void setTelefonoEmpresa(String telefonoEmpresa) {
+        this.telefonoEmpresa = telefonoEmpresa;
+    }
+
     public String getDireccionEmpresa() {
         return direccionEmpresa;
     }
 
     public void setDireccionEmpresa(String direccionEmpresa) {
         this.direccionEmpresa = direccionEmpresa;
-    }
-
-
-    public ArrayList<Empresa> cargarData(){
-        ArrayList<Empresa> itemsEmpresa = new ArrayList<>();
-
-        itemsEmpresa.add(new Empresa("Tubrica","tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, laboris nisi"));
-        itemsEmpresa.add(new Empresa("Nestle","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod"));
-        itemsEmpresa.add(new Empresa("OtraVez C.A","ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehende"));
-        itemsEmpresa.add(new Empresa("Preca C.A","ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehende"));
-        itemsEmpresa.add(new Empresa("EPA C.A","ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehende"));
-
-        return itemsEmpresa;
-
     }
 }

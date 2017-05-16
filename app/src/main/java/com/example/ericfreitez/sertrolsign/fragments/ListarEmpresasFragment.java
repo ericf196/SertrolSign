@@ -45,9 +45,9 @@ public class ListarEmpresasFragment extends Fragment {
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_listar_empresas, container, false);
 
-        Empresa empresa=new Empresa();
-        ArrayList<Empresa> itemsEmpresa;
-        itemsEmpresa=empresa.cargarData();
+        //Empresa empresa=new Empresa();
+        //ArrayList<Empresa> itemsEmpresa;
+        //itemsEmpresa=empresa.cargarData();
 
         // Obtener el Recycler
         recycler = (RecyclerView) v.findViewById(R.id.recycler_empresas);
@@ -59,8 +59,8 @@ public class ListarEmpresasFragment extends Fragment {
         recycler.setLayoutManager(lManager);
 
         // Crear un nuevo adaptador
-        adapter = new EmpresaAdapterListar(itemsEmpresa);
-        recycler.setAdapter(adapter);
+        //adapter = new EmpresaAdapterListar(itemsEmpresa);
+        //recycler.setAdapter(adapter);
 
         return v;
     }

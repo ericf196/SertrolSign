@@ -49,8 +49,6 @@ public class SignContractActivity extends AppCompatActivity implements View.OnCl
     }
 
 
-
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -108,8 +106,6 @@ public class SignContractActivity extends AppCompatActivity implements View.OnCl
     public void onDrawCreationError() {  //*
         Toast.makeText(this, "Error, cannot create bitmap", Toast.LENGTH_SHORT).show();
     }
-
-
 
 
     public boolean enabledBtnSend(){
