@@ -67,7 +67,6 @@ public class AgregarEmpresaFragment extends Fragment implements View.OnClickList
         mBtnClearAll.setOnClickListener(this);
         mBtnSend.setOnClickListener(this);
 
-
         return v;
     }
 
@@ -142,7 +141,7 @@ public class AgregarEmpresaFragment extends Fragment implements View.OnClickList
         mProgressDialog.setMessage("Cargando...");
         mProgressDialog.show();
 
-        Empresa empresa = new Empresa(
+        Empresa empresa = new Empresa(null,null,
                 mTextNombre.getText().toString(),
                 mTextTelefono.getText().toString(),
                 mTextDireccion.getText().toString()
@@ -172,6 +171,5 @@ public class AgregarEmpresaFragment extends Fragment implements View.OnClickList
 
 
     }
-
 
 }

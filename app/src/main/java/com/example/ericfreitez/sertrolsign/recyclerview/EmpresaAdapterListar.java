@@ -20,7 +20,6 @@ public class EmpresaAdapterListar extends RecyclerView.Adapter<EmpresaAdapterLis
 
     private List<Empresa> itemsEmpresa;
 
-
     public static class EmpresaViewHolder extends RecyclerView.ViewHolder {
 
         public TextView nombreEmpresa;
@@ -40,16 +39,13 @@ public class EmpresaAdapterListar extends RecyclerView.Adapter<EmpresaAdapterLis
     }
 
 
-
     public EmpresaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.row_list_empresa, parent, false);
-        Log.i("msg", String.valueOf(v.getContext()));
+        //Log.i("msg", String.valueOf(v.getContext()));
 
         return new EmpresaViewHolder(v);
-
     }
-
 
     public void onBindViewHolder(EmpresaAdapterListar.EmpresaViewHolder holder, int position) {
 
@@ -61,4 +57,5 @@ public class EmpresaAdapterListar extends RecyclerView.Adapter<EmpresaAdapterLis
     public int getItemCount() {
         return itemsEmpresa.size();
     }
+
 }
