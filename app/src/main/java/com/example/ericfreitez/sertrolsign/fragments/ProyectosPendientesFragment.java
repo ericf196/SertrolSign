@@ -39,9 +39,9 @@ public class ProyectosPendientesFragment extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_proyectos_pendientes, container, false);
 
-        Proyecto proyecto=new Proyecto();
+        /*Proyecto proyecto=new Proyecto();
         ArrayList<Proyecto> itemsProyectos;
-        itemsProyectos=proyecto.cargarData();
+        itemsProyectos=proyecto.cargarData();*/
 
         // Obtener el Recycler
         recycler = (RecyclerView) v.findViewById(R.id.recycler_proyectos_pendientes);
@@ -54,7 +54,7 @@ public class ProyectosPendientesFragment extends Fragment {
         recycler.setLayoutManager(lManager);
 
         // Crear un nuevo adaptador
-        adapter = new ProyectosAdapterPendientes(itemsProyectos);
+        //adapter = new ProyectosAdapterPendientes(itemsProyectos);
         recycler.setAdapter(adapter);
 
 

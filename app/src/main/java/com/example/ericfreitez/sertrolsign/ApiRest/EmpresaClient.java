@@ -15,11 +15,11 @@ import retrofit2.http.Path;
 
 public interface EmpresaClient {
 
-    @GET("empresas")
-    Call<ListaEmpresaClient> getAllEmpresa();
-
     @POST("insertarempresas")
     Call<MensajeResponse> createEmpresa(@Body Empresa empresa);
+
+    @GET("empresas")
+    Call<ListaEmpresaClient> getAllEmpresa();
 
 
 

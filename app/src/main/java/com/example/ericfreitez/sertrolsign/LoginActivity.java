@@ -2,6 +2,7 @@ package com.example.ericfreitez.sertrolsign;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -13,6 +14,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -21,6 +23,23 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.ericfreitez.sertrolsign.ApiRest.ApiClient;
+import com.example.ericfreitez.sertrolsign.ApiRest.EmpresaClient;
+import com.example.ericfreitez.sertrolsign.ApiRest.ListaEmpresaClient;
+import com.example.ericfreitez.sertrolsign.ApiRest.ListaProyectoClient;
+import com.example.ericfreitez.sertrolsign.ApiRest.ProyectoClient;
+import com.example.ericfreitez.sertrolsign.models.Empresa;
+import com.example.ericfreitez.sertrolsign.models.MensajeResponse;
+import com.example.ericfreitez.sertrolsign.models.Proyecto;
+import com.example.ericfreitez.sertrolsign.models.User;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity /*implements View.OnClickListener*/{
 
@@ -37,6 +56,8 @@ public class LoginActivity extends AppCompatActivity /*implements View.OnClickLi
     private TextInputLayout mFloatLabelPassword;
     private View mProgressView;
     private View mLoginFormView;
+    private ProgressDialog mProgressDialog;
+    private List<Proyecto> proyectos= new ArrayList<>() ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,11 +173,6 @@ public class LoginActivity extends AppCompatActivity /*implements View.OnClickLi
 
     }
 
-    /*@Override
-    public void onClick(View v) {
-        Intent mainActivity= new Intent(this, MainActivity.class);
-        startActivity(mainActivity);
-    }*/
 
     private boolean isUserIdValid(String userId) {
         return userId.length() == 10;
@@ -171,6 +187,57 @@ public class LoginActivity extends AppCompatActivity /*implements View.OnClickLi
 
     private void showLoginError(String error) {
         Toast.makeText(this, error, Toast.LENGTH_LONG).show();
+    }
+
+
+
+
+    private void logining() {
+
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setMessage("Cargando...");
+        mProgressDialog.show();
+
+        User user = new User("ericf196","123456");
+
+        ProyectoClient service = ApiClient.getClient().create(ProyectoClient.class);
+
+        Call<ListaProyectoClient> call= service.Login(user);
+        call.enqueue(new Callback<ListaProyectoClient>() {
+            @Override
+            public void onResponse(Call<ListaProyectoClient> call, Response<ListaProyectoClient> response) {
+
+                if (!response.isSuccessful()) {
+                    Log.e("msg", "onResponse :" + response.message());
+                } else {
+                    Log.e("msg", "onResponse :" + response.message());
+                    ListaProyectoClient listaProyecto = response.body();
+                    if (listaProyecto!=null){
+                        proyectos= listaProyecto.getProyectos();
+                        for (int i=0; i< proyectos.size(); i++){
+                            itemSpinner.add(empresas.get(i).getNombreEmpresa());
+                        }
+                        //Log.i("msg", ""+ empresas.size());
+                    }else{
+                        Log.e("msg", "No Tiene");
+                    }
+                }
+
+                if (mProgressDialog.isShowing()){
+                    mProgressDialog.dismiss();
+                }
+                Toast.makeText(getApplicationContext(), "" + response.body().getDescripcionProyecto() , Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFailure(Call<ListaProyectoClient> call, Throwable t) {
+
+                Toast.makeText(getApplicationContext(), "Error onFailure Retrofit", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
     }
 
     public class UserLoginTask extends AsyncTask<Void, Void, Integer> {
@@ -188,7 +255,7 @@ public class LoginActivity extends AppCompatActivity /*implements View.OnClickLi
 
             try {
                 // Simulate network access.
-                Thread.sleep(2000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 return 4;
             }
@@ -227,9 +294,11 @@ public class LoginActivity extends AppCompatActivity /*implements View.OnClickLi
         }
 
         private void showMainActivity() {
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+            logining();
+            /*Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
-            finish();
+            finish();*/
         }
 
     }

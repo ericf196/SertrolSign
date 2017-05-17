@@ -54,9 +54,9 @@ public class ReporteAdapterFirma  extends RecyclerView.Adapter<ReporteAdapterFir
 
     public void onBindViewHolder(ReporteAdapterFirma.ReporteFirmaViewHolder holder, int position) {
 
-        holder.reporteResponsable.setText(String.valueOf(itemsProyectos.get(position).getNombreResponsable()));
+       /*holder.reporteResponsable.setText(String.valueOf(itemsProyectos.get(position).getNombreResponsable()));
         holder.reporteFecha.setText(String.valueOf(itemsProyectos.get(position).getFechaProyecto()));
-        holder.reporteDescripcion.setText(String.valueOf(itemsProyectos.get(position).getDescripcionProyecto()));
+        holder.reporteDescripcion.setText(String.valueOf(itemsProyectos.get(position).getDescripcionProyecto()));*/
 
     }
 

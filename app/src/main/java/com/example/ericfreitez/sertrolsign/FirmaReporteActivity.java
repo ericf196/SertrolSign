@@ -38,9 +38,9 @@ public class FirmaReporteActivity extends AppCompatActivity {
         }
 
 
-        Proyecto proyecto=new Proyecto();
+       /* Proyecto proyecto=new Proyecto();
         ArrayList<Proyecto> itemsProyectos;
-        itemsProyectos=proyecto.cargarData();
+        itemsProyectos=proyecto.cargarData();*/
 
         // Obtener el Recycler
         recycler = (RecyclerView) findViewById(R.id.recycler_reporte_servicio);
@@ -52,7 +52,7 @@ public class FirmaReporteActivity extends AppCompatActivity {
         recycler.setLayoutManager(lManager);
 
         // Crear un nuevo adaptador
-        adapter = new ReporteAdapterFirma(itemsProyectos);
+        //adapter = new ReporteAdapterFirma(itemsProyectos);
         recycler.setAdapter(adapter);
     }
 
