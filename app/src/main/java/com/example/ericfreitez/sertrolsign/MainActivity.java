@@ -9,15 +9,23 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 
+import com.example.ericfreitez.sertrolsign.ApiRest.ListaProyectoClient;
 import com.example.ericfreitez.sertrolsign.fragments.AgregarEmpresaFragment;
 import com.example.ericfreitez.sertrolsign.fragments.ListarEmpresasFragment;
 import com.example.ericfreitez.sertrolsign.fragments.ProyectosPendientesFragment;
+import com.example.ericfreitez.sertrolsign.models.Proyecto;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    String userName;
 
+    private List<Proyecto> proyectos= new ArrayList<>() ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,13 +43,47 @@ public class MainActivity extends AppCompatActivity
         navigationView.getMenu().getItem(0).setChecked(true);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+        //String userName = getIntent().getStringExtra("userName");
+
+        //Bundle bundle = new Bundle();
+        //bundle.putString("userName", userName);
+
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
         ProyectosPendientesFragment fragment = new ProyectosPendientesFragment();
+        //fragment.setArguments(bundle);
         fragmentTransaction.replace(R.id.content_main, fragment);
         fragmentTransaction.commit();
 
+        //String userName= (String) getIntent().getSerializableExtra("userName");
 
+
+
+// Your fragment
+
+
+        //ListaProyectoClient listaProyecto;
+        //listaProyecto= (ListaProyectoClient) getIntent().getSerializableExtra("userProyectos");
+        //String userName = getIntent().getExtras().getString();
+        //Log.i("msg","------------->"+userName);
+
+        /*if (listaProyecto!=null){
+
+            proyectos= listaProyecto.getProyectos();
+            for (int i=0; i <proyectos.size(); i++){
+                Log.i("msg",proyectos.get(i).getNombreProyecto());
+                Log.i("msg",proyectos.get(i).getNombreEmpresa());
+                Log.i("msg",proyectos.get(i).getDescripcionProyecto());
+                Log.i("msg",proyectos.get(i).getCodigoProyecto());
+                Log.i("msg","--------------------------------");
+            }
+
+        }*/
+    }
+    public String getMyData() {
+        return userName = getIntent().getStringExtra("userName");
     }
 
     @Override

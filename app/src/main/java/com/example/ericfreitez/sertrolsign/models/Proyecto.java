@@ -3,12 +3,14 @@ package com.example.ericfreitez.sertrolsign.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 
 /**
  * Created by Eric Freitez on 26/04/2017.
  */
 
-public class Proyecto {
+public class Proyecto implements Serializable {
 
     @SerializedName("CodigoProyecto")
     @Expose

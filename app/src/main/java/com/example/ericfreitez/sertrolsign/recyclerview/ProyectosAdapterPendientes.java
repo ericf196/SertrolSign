@@ -73,12 +73,12 @@ public class ProyectosAdapterPendientes extends RecyclerView.Adapter<ProyectosAd
 
     public void onBindViewHolder(ProyectosViewHolder holder, int position) {
 
-        /*holder.nombreEmpresa.setText(String.valueOf(itemsProyectos.get(position).getNombreEmpresa()));
+        holder.nombreEmpresa.setText(String.valueOf(itemsProyectos.get(position).getCodigoProyecto()));
         holder.nombreProyecto.setText(String.valueOf(itemsProyectos.get(position).getNombreProyecto()));
-        holder.direccionEmpresa.setText(String.valueOf(itemsProyectos.get(position).getDireccionEmpresa()));
-        holder.fechaProyecto.setText(String.valueOf(itemsProyectos.get(position).getFechaProyecto()));
+        holder.direccionEmpresa.setText(String.valueOf(itemsProyectos.get(position).getDescripcionProyecto()));
+        holder.fechaProyecto.setText(String.valueOf(itemsProyectos.get(position).getNombreEmpresa()));
 
-        metodoOpcionAgregarServicio(holder, position);
+        /*metodoOpcionAgregarServicio(holder, position);
         metodoOpcionCerrarServicio(holder, position);*/
 
     }

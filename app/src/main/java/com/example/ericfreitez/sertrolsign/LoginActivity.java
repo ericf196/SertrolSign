@@ -43,10 +43,13 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity /*implements View.OnClickListener*/{
 
-    private static final String DUMMY_USER_ID = "0000000000";
-    private static final String DUMMY_PASSWORD = "dummy_password";
+    private static final String DUMMY_USER_ID = "00000000";
+    private static final String DUMMY_PASSWORD = "00000000";
+    public static final String ERROR_MESSAGE_RETROFIT = "Error onFailure Retrofit";
+    public static final String ERROR_PASSWORD_USERNAME = "Error en Usuario o Password";
+    public static final String ERROR_NO_ENCONTRADO = "Error encontrado";
 
-    private UserLoginTask mAuthTask = null;
+    //private UserLoginTask mAuthTask = null;
 
     private Button mFormButton;
     private ImageView mLogoView;
@@ -58,6 +61,7 @@ public class LoginActivity extends AppCompatActivity /*implements View.OnClickLi
     private View mLoginFormView;
     private ProgressDialog mProgressDialog;
     private List<Proyecto> proyectos= new ArrayList<>() ;
+    private Bundle bundleProyectos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +69,8 @@ public class LoginActivity extends AppCompatActivity /*implements View.OnClickLi
         setContentView(R.layout.activity_login);
 
         mLogoView = (ImageView) findViewById(R.id.image_logo);
-        mUserIdView = (EditText) findViewById(R.id.user_name);
-        mPasswordView = (EditText) findViewById(R.id.password);
+        mUserIdView = (EditText) findViewById(R.id.user_name); //*
+        mPasswordView = (EditText) findViewById(R.id.password); //*
         mFloatLabelUserId = (TextInputLayout) findViewById(R.id.float_label_user_id);
         mFloatLabelPassword = (TextInputLayout) findViewById(R.id.float_label_password);
         mLoginFormView = findViewById(R.id.login_form);
@@ -74,6 +78,8 @@ public class LoginActivity extends AppCompatActivity /*implements View.OnClickLi
         mFormButton= (Button) findViewById(R.id.form_button);
 
         //mFormButton.setOnClickListener(this);
+
+
 
         // Setup
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -97,7 +103,7 @@ public class LoginActivity extends AppCompatActivity /*implements View.OnClickLi
             public void onClick(View view) {
 
                 if (!isOnline()) {
-                    showLoginError(getString(R.string.error_network));
+
                     return;
                 }
                 attemptLogin();
@@ -108,17 +114,11 @@ public class LoginActivity extends AppCompatActivity /*implements View.OnClickLi
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return password.length() > 3;
     }
 
-
-
     private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
 
-        // Reset errors.
         mFloatLabelUserId.setError(null);
         mFloatLabelPassword.setError(null);
 
@@ -156,26 +156,23 @@ public class LoginActivity extends AppCompatActivity /*implements View.OnClickLi
             // form field with an error.
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(userId, password);
-            mAuthTask.execute((Void) null);
+            logining();
         }
     }
 
-    private void showProgress(final boolean show) {
+    /*private void showProgress(final boolean show) {
         mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
 
         int visibility = show ? View.GONE : View.VISIBLE;
         mLogoView.setVisibility(visibility);
         mLoginFormView.setVisibility(visibility);
 
-    }
+    }*/
 
 
     private boolean isUserIdValid(String userId) {
-        return userId.length() == 10;
+
+        return userId.length() >5;
     }
 
     private boolean isOnline() {
@@ -199,48 +196,61 @@ public class LoginActivity extends AppCompatActivity /*implements View.OnClickLi
         mProgressDialog.setMessage("Cargando...");
         mProgressDialog.show();
 
-        User user = new User("ericf196","123456");
-
         ProyectoClient service = ApiClient.getClient().create(ProyectoClient.class);
 
-        Call<ListaProyectoClient> call= service.Login(user);
+        Call<ListaProyectoClient> call= service.Login(mUserIdView.getText().toString(),mPasswordView.getText().toString());
         call.enqueue(new Callback<ListaProyectoClient>() {
             @Override
             public void onResponse(Call<ListaProyectoClient> call, Response<ListaProyectoClient> response) {
 
-                if (!response.isSuccessful()) {
-                    Log.e("msg", "onResponse :" + response.message());
-                } else {
-                    Log.e("msg", "onResponse :" + response.message());
-                    ListaProyectoClient listaProyecto = response.body();
-                    if (listaProyecto!=null){
+                Log.e("msg", "onResponse :" + response.message());
+
+                ListaProyectoClient listaProyecto = response.body();
+                if(listaProyecto.getEncontrado()==0){
+                        Toast.makeText(getApplicationContext(), ERROR_PASSWORD_USERNAME , Toast.LENGTH_LONG).show();
+                }else{
+
+                    /*if (listaProyecto!=null){
+                        Log.e("msg", "Bloque 3");
                         proyectos= listaProyecto.getProyectos();
-                        for (int i=0; i< proyectos.size(); i++){
-                            itemSpinner.add(empresas.get(i).getNombreEmpresa());
+                        for (int i=0; i <proyectos.size(); i++){
+                            Log.i("msg",proyectos.get(i).getNombreProyecto());
+                            Log.i("msg",proyectos.get(i).getNombreEmpresa());
+                            Log.i("msg",proyectos.get(i).getDescripcionProyecto());
+                            Log.i("msg",proyectos.get(i).getCodigoProyecto());
+                            Log.i("msg","--------------------------------");
                         }
-                        //Log.i("msg", ""+ empresas.size());
-                    }else{
-                        Log.e("msg", "No Tiene");
-                    }
+
+                    }*/
+
+                    bundleProyectos =new Bundle();
+                    bundleProyectos.putSerializable("userProyectos",listaProyecto);
+                    bundleProyectos.putString("userName",mUserIdView.getText().toString());
+                    Intent mainActivity= new Intent(getApplicationContext(), MainActivity.class);
+                    mainActivity.putExtras(bundleProyectos);
+                    startActivity(mainActivity);
+
+
                 }
 
                 if (mProgressDialog.isShowing()){
                     mProgressDialog.dismiss();
                 }
-                Toast.makeText(getApplicationContext(), "" + response.body().getDescripcionProyecto() , Toast.LENGTH_LONG).show();
+
+                //Toast.makeText(getApplicationContext(), "AQUI" , Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(Call<ListaProyectoClient> call, Throwable t) {
-
-                Toast.makeText(getApplicationContext(), "Error onFailure Retrofit", Toast.LENGTH_LONG).show();
+                Log.i("msg","" + t.getMessage());
+                Toast.makeText(getApplicationContext(), ERROR_MESSAGE_RETROFIT , Toast.LENGTH_LONG).show();
             }
         });
 
 
     }
 
-    public class UserLoginTask extends AsyncTask<Void, Void, Integer> {
+    /*public class UserLoginTask extends AsyncTask<Void, Void, Integer> {
 
         private final String mUserId;
         private final String mPassword;
@@ -295,11 +305,11 @@ public class LoginActivity extends AppCompatActivity /*implements View.OnClickLi
 
         private void showMainActivity() {
 
-            logining();
-            /*Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
-            finish();*/
+            finish();
         }
 
-    }
+    }*/
 }
