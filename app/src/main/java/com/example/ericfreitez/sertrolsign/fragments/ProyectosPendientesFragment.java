@@ -38,6 +38,7 @@ public class ProyectosPendientesFragment extends Fragment {
     private ProgressDialog mProgressDialog;
     private String userName;
     private MainActivity activity;
+    private View emptyStateContainer;
 
 
     public static ProyectosPendientesFragment newInstance() {
@@ -57,6 +58,8 @@ public class ProyectosPendientesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_proyectos_pendientes, container, false);
+
+        emptyStateContainer= v.findViewById(R.id.empty_state_container);
 
         activity = (MainActivity) getActivity();
         userName = activity.getMyData();
@@ -94,18 +97,13 @@ public class ProyectosPendientesFragment extends Fragment {
             @Override
             public void onResponse(Call<ListaProyectoClient> call, Response<ListaProyectoClient> response) {
 
-                if (!response.isSuccessful()) {
-                    Log.e("msg", "onResponse :" + response.message());
-                } else {
                     ListaProyectoClient listaProyectoUser = response.body();
                     if (listaProyectoUser!=null){
                         proyectos= listaProyectoUser.getProyectos();
                         adapter = new ProyectosAdapterPendientes(proyectos);
                         recycler.setAdapter(adapter);
-                    }else{
-                        Log.e("msg", "No Tiene");
+                        showBackgroundEmpty(listaProyectoUser);
                     }
-                }
 
                 if (mProgressDialog.isShowing()){
                     mProgressDialog.dismiss();
@@ -117,5 +115,14 @@ public class ProyectosPendientesFragment extends Fragment {
             }
         });
 
+    }
+
+    private void showBackgroundEmpty(ListaProyectoClient listaProyectoUser) {
+
+        if(listaProyectoUser.getMensaje().equals("El usuario no tiene proyectos asociados")){
+            recycler.setVisibility(View.GONE);
+        }else if(listaProyectoUser.getMensaje().equals("El usuario tiene proyectos asociados")) {
+            emptyStateContainer.setVisibility(View.GONE);
+        }
     }
 }
