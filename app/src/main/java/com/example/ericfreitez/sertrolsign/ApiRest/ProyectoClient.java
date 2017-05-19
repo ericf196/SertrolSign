@@ -1,5 +1,9 @@
 package com.example.ericfreitez.sertrolsign.ApiRest;
 
+import com.example.ericfreitez.sertrolsign.models.Empresa;
+import com.example.ericfreitez.sertrolsign.models.MensajeResponse;
+import com.example.ericfreitez.sertrolsign.models.Proyecto;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -18,7 +22,8 @@ public interface ProyectoClient {
     @GET("proyectouser/{userName}")
     Call<ListaProyectoClient> getProyectoUser(@Path("userName") String userName);
 
-    //@POST("/SF_UserLogin.svc/rest/login/{employeeCode}/{password}") // Assume your base url is http://172.16.7.203/sfAppServices/
-    //public Call<LoginResponseDto> login(@Path("employeeCode") String employeeCode, @Path("password") String password);
+
+    @POST("insertarproyectos/{userName}")
+    Call<MensajeResponse> createProyecto(@Path("userName") String userName ,@Body Proyecto proyecto);
 
 }

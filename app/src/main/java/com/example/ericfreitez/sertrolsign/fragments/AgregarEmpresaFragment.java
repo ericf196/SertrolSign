@@ -120,9 +120,7 @@ public class AgregarEmpresaFragment extends Fragment implements View.OnClickList
 
             }
         }
-        /*if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
-        }*/
         return false;
     }
 

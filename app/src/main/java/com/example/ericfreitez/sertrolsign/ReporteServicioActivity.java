@@ -244,7 +244,7 @@ public class ReporteServicioActivity extends AppCompatActivity implements  View.
             if (day.length()==1) {
                 day = "0" + day;
             }
-            String returnfecha=day + "/" + month +"/" + "" +year;
+            String returnfecha=day + "/" + month +"/" +year;
             return returnfecha;
         }else {
             String hora = String.valueOf(fecha.get(Calendar.HOUR));

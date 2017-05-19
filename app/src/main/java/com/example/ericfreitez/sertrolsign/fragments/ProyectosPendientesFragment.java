@@ -74,10 +74,7 @@ public class ProyectosPendientesFragment extends Fragment {
 
         recycler.setLayoutManager(lManager);
 
-        // Crear un nuevo adaptador
-        //adapter = new ProyectosAdapterPendientes(itemsProyectos);
         recycler.setAdapter(adapter);
-
 
         return v;
     }
