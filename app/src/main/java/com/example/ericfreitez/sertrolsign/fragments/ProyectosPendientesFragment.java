@@ -40,7 +40,6 @@ public class ProyectosPendientesFragment extends Fragment {
     private MainActivity activity;
     private View emptyStateContainer;
 
-
     public static ProyectosPendientesFragment newInstance() {
         ProyectosPendientesFragment fragment = new ProyectosPendientesFragment();
 
@@ -100,7 +99,6 @@ public class ProyectosPendientesFragment extends Fragment {
                         recycler.setAdapter(adapter);
                         showBackgroundEmpty(listaProyectoUser);
                     }
-
                 if (mProgressDialog.isShowing()){
                     mProgressDialog.dismiss();
                 }

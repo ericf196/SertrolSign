@@ -51,7 +51,6 @@ public class ProyectosAdapterPendientes extends RecyclerView.Adapter<ProyectosAd
             opcionAgregarServicio = (Button) v.findViewById(R.id.opcion_agregar_servicio);
             opcionCerrarServicio = (Button) v.findViewById(R.id.opcion_cerrar_servicio);
 
-
         }
     }
 

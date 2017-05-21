@@ -77,12 +77,11 @@ public class CrearProyectoFragment extends Fragment implements View.OnClickListe
         activity = (MainActivity) getActivity();
         userName = activity.getMyData();
 
-        textViewFecha.setText(getCurrentDate());
+        textViewFecha.setText(getCurrentDate(0));
         btnClearAll= (Button) v.findViewById(R.id.btn_clear_all);
         btnSend= (Button) v.findViewById(R.id.btn_send);
 
         spinner = (Spinner) v.findViewById(R.id.spinner_empresa);
-
         itemSpinner.add("Empresa");
         cargarListaRetrofit();
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, itemSpinner);
@@ -155,8 +154,7 @@ public class CrearProyectoFragment extends Fragment implements View.OnClickListe
                 null,
                 textNombre.getText().toString(),
                 textDescripcion.getText().toString(),
-                //textViewFecha.getText().toString(),
-                "2015-05-06",
+                getCurrentDate(1),
                 spinner.getSelectedItem().toString()
         );
 
@@ -183,11 +181,12 @@ public class CrearProyectoFragment extends Fragment implements View.OnClickListe
         });
     }
 
-    private String getCurrentDate() {
+    private String getCurrentDate(int n) {
         Calendar fecha = new GregorianCalendar();
+        String returnfecha;
 
             String year = String.valueOf(fecha.get(Calendar.YEAR));
-            String month = String.valueOf(fecha.get(Calendar.MONTH));
+            String month = String.valueOf(fecha.get(Calendar.MONTH)+1);
             String day = String.valueOf(fecha.get(Calendar.DAY_OF_MONTH));
             if (month.length()==1) {
                 month = "0" + month;
@@ -195,9 +194,12 @@ public class CrearProyectoFragment extends Fragment implements View.OnClickListe
             if (day.length()==1) {
                 day = "0" + day;
             }
-            String returnfecha=day + "/" + month +"/" +year;
+            if(n==0){
+                returnfecha=day + "/" + month +"/" +year;
+            }else {
+                returnfecha=year + "/" + month +"/" +day;
+            }
             return returnfecha;
         }
-
 
 }
