@@ -22,7 +22,6 @@ public interface ProyectoClient {
     @GET("proyectouser/{userName}")
     Call<ListaProyectoClient> getProyectoUser(@Path("userName") String userName);
 
-
     @POST("insertarproyectos/{userName}")
     Call<MensajeResponse> createProyecto(@Path("userName") String userName ,@Body Proyecto proyecto);
 

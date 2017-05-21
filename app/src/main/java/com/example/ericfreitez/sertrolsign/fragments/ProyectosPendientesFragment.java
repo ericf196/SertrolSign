@@ -69,12 +69,7 @@ public class ProyectosPendientesFragment extends Fragment {
         recycler.setHasFixedSize(true);
 
         cargarListaProyectosRetrofit();
-        // Usar un administrador para LinearLayout
-        lManager = new LinearLayoutManager(getActivity());
 
-        recycler.setLayoutManager(lManager);
-
-        recycler.setAdapter(adapter);
 
         return v;
     }
@@ -96,8 +91,12 @@ public class ProyectosPendientesFragment extends Fragment {
 
                     ListaProyectoClient listaProyectoUser = response.body();
                     if (listaProyectoUser!=null){
+                        if(listaProyectoUser.getMensaje().equals("El usuario tiene proyectos asociados"))
                         proyectos= listaProyectoUser.getProyectos();
                         adapter = new ProyectosAdapterPendientes(proyectos);
+                        recycler.setAdapter(adapter);
+                        lManager = new LinearLayoutManager(getActivity());
+                        recycler.setLayoutManager(lManager);
                         recycler.setAdapter(adapter);
                         showBackgroundEmpty(listaProyectoUser);
                     }
