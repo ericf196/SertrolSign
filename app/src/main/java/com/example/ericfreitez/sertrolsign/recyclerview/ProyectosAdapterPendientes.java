@@ -51,7 +51,6 @@ public class ProyectosAdapterPendientes extends RecyclerView.Adapter<ProyectosAd
             opcionAgregarServicio = (Button) v.findViewById(R.id.opcion_agregar_servicio);
             opcionCerrarServicio = (Button) v.findViewById(R.id.opcion_cerrar_servicio);
 
-
         }
     }
 
@@ -78,7 +77,7 @@ public class ProyectosAdapterPendientes extends RecyclerView.Adapter<ProyectosAd
         holder.direccionEmpresa.setText(String.valueOf(itemsProyectos.get(position).getDescripcionProyecto()));
         holder.fechaProyecto.setText(String.valueOf(itemsProyectos.get(position).getNombreEmpresa()));
 
-        /*metodoOpcionAgregarServicio(holder, position);
+       /* metodoOpcionAgregarServicio(holder, position);
         metodoOpcionCerrarServicio(holder, position);*/
 
     }
@@ -107,15 +106,17 @@ public class ProyectosAdapterPendientes extends RecyclerView.Adapter<ProyectosAd
                 Intent i = new Intent(context, FirmaReporteActivity.class);
                 context.startActivity(i);
 
+
             }
         });
-
 
     }
 
     public int getItemCount() {
         return itemsProyectos.size();
     }
+
+
 
 
 }
